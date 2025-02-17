@@ -11,6 +11,8 @@ export interface IWeatherLocation {
   key: string;
   city: string;
   country: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface ICurrentConditionsResponse {

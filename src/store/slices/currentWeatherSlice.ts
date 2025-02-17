@@ -8,12 +8,14 @@ interface CurrentWeatherState {
   data: ILocationWeatherResponse | null;
   loading: boolean;
   error: string | null;
+  selectedUnit: TCurrentLocationUnitType;
 }
 
 const initialState: CurrentWeatherState = {
   data: null,
   loading: false,
   error: null,
+  selectedUnit: 'C',
 };
 
 export const fetchLocationWeather = createAsyncThunk(
@@ -45,7 +47,15 @@ export const fetchCityWeather = createAsyncThunk(
 const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedUnit: (state, action) => {
+      state.selectedUnit = action.payload;
+      if (state.data) {
+        state.data.temperature =
+          state.selectedUnit === 'C' ? state.data.temperatureC : state.data.temperatureF;
+      }
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchLocationWeather.pending, state => {
@@ -77,4 +87,5 @@ const currentWeatherSlice = createSlice({
   },
 });
 
+export const { setSelectedUnit } = currentWeatherSlice.actions;
 export default currentWeatherSlice.reducer;

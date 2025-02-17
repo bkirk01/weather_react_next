@@ -2,13 +2,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Card } from '@/components/ui';
 import { useWeatherService } from '@/hooks/useWeatherService';
-import { RootState } from '@/store/store';
+import { setSelectedUnit } from '@/store/slices/currentWeatherSlice';
+import { fetchForecast } from '@/store/slices/forecastSlice';
+import { AppDispatch, RootState } from '@/store/store';
+import { TCurrentLocationUnitType } from '@/types/weather.types';
 
 import { ICurrentLocationProps } from './CurrentLocation.types';
+
 import './CurrentLocation.css';
 
 const CurrentLocation: React.FC<ICurrentLocationProps> = ({
@@ -16,6 +20,7 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
   selectedTmpUnit,
   selectedCity,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { getLocationWeather, getWeatherByCity } = useWeatherService();
   const {
     data: weatherData,
@@ -67,7 +72,16 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
         });
       });
 
-      await getLocationWeather(position.coords.latitude, position.coords.longitude, unit);
+      const weatherResult = await getLocationWeather(
+        position.coords.latitude,
+        position.coords.longitude,
+        unit
+      );
+
+      if (weatherResult.locationKey) {
+        dispatch(fetchForecast(weatherResult.locationKey));
+      }
+
       setPermissionDenied(false);
       setLocationError(null);
     } catch (error) {
@@ -85,11 +99,26 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
   useEffect(() => {
     if (selectedCity) {
       setIsInitialLoad(true);
-      getWeatherByCity(selectedCity, unit).finally(() => setIsInitialLoad(false));
+      getWeatherByCity(selectedCity, unit)
+        .then(result => {
+          // Fetch forecast after getting weather data for selected city
+          if (result.locationKey) {
+            dispatch(fetchForecast(result.locationKey));
+          }
+        })
+        .catch(error => {
+          setLocationError(error.message || 'Failed to fetch weather data for selected city.');
+        })
+        .finally(() => setIsInitialLoad(false));
     } else {
       requestLocationPermission();
     }
   }, [selectedCity, unit, getWeatherByCity]);
+
+  const handleUnitChange = (newUnit: TCurrentLocationUnitType) => {
+    selectedTmpUnit(newUnit);
+    dispatch(setSelectedUnit(newUnit));
+  };
 
   if (loading || isInitialLoad) {
     return (
@@ -156,14 +185,14 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
         <div className="units" role="group" aria-label="Temperature unit selection">
           <button
             className={`unit ${unit === 'C' ? 'active' : ''}`}
-            onClick={() => selectedTmpUnit('C')}
+            onClick={() => handleUnitChange('C')}
             aria-pressed={unit === 'C'}
           >
             C
           </button>
           <button
             className={`unit ${unit === 'F' ? 'active' : ''}`}
-            onClick={() => selectedTmpUnit('F')}
+            onClick={() => handleUnitChange('F')}
             aria-pressed={unit === 'F'}
           >
             F

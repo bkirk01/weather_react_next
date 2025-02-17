@@ -41,6 +41,32 @@ export class LocationWeatherService {
     }
   }
 
+  async getWeatherByLocationKey(locationKey: string): Promise<ILocationWeatherResponse> {
+    try {
+      const response = await axiosInstance.get(`/locations/v1/${locationKey}`);
+
+      if (!response.data) {
+        throw new Error('Location not found');
+      }
+
+      const conditions = await this.getCurrentConditions(locationKey);
+
+      return this.formatWeatherResponse(
+        conditions,
+        {
+          Key: locationKey,
+          LocalizedName: response.data.LocalizedName,
+          Country: response.data.Country,
+          GeoPosition: response.data.GeoPosition,
+        },
+        'C' // Default to Celsius
+      );
+    } catch (error) {
+      console.error('Error fetching weather by location key:', error);
+      throw error;
+    }
+  }
+
   formatWeatherResponse(
     conditions: AccuWeatherCurrentResponse,
     location: AccuWeatherLocationResponse,

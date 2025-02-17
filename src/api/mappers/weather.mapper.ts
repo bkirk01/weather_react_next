@@ -1,3 +1,5 @@
+import { ICurrentWeather, IForecastDay, IWeatherResponse } from '@/types/weather.types';
+
 import { IWeatherLocation } from '../weather/types';
 
 import {

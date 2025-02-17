@@ -1,43 +1,55 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-interface ForecastDay {
-  date: string;
-  temperature: {
-    min: number;
-    max: number;
-  };
-  condition: string;
-}
+import { ForecastService } from '@/api/weather/forecast.service';
+import { IForecastDay } from '@/types/weather.types';
 
 interface ForecastState {
-  days: ForecastDay[];
+  data: IForecastDay[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: ForecastState = {
-  days: [],
+  data: [],
   loading: false,
   error: null,
 };
 
-export const forecastSlice = createSlice({
+export const fetchForecast = createAsyncThunk(
+  'forecast/fetchByLocationKey',
+  async (locationKey: string, { rejectWithValue }) => {
+    try {
+      const forecastService = new ForecastService();
+      return await forecastService.getFiveDayForecast(locationKey);
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Failed to fetch forecast data');
+    }
+  }
+);
+
+const forecastSlice = createSlice({
   name: 'forecast',
   initialState,
-  reducers: {
-    setForecast: (state, action: PayloadAction<ForecastDay[]>) => {
-      state.days = action.payload;
-      state.error = null;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
-      state.loading = false;
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchForecast.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchForecast.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchForecast.rejected, (state, action) => {
+        state.loading = false;
+        state.error = (action.payload as string) || 'Failed to fetch forecast data';
+      });
   },
 });
 
-export const { setForecast, setLoading, setError } = forecastSlice.actions;
 export default forecastSlice.reducer;

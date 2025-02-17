@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { LocationWeatherService } from '@/api/weather/location.service';
-import { IWeatherState, TTemperatureUnit } from '@/types/weather.types';
+import { IWeatherState, TCurrentLocationUnitType } from '@/types/weather.types';
 
 const initialState: IWeatherState = {
   data: null,
@@ -14,7 +14,9 @@ export const fetchLocationWeather = createAsyncThunk(
   'weather/fetchByLocation',
   async ({ latitude, longitude }: { latitude: number; longitude: number }) => {
     const locationService = new LocationWeatherService();
-    return await locationService.getLocationByCoordinates(latitude, longitude);
+    const location = await locationService.getLocationByCoordinates(latitude, longitude);
+    const conditions = await locationService.getCurrentConditions(location.Key);
+    return locationService.formatWeatherResponse(conditions, location, 'C');
   }
 );
 
@@ -30,7 +32,7 @@ export const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    setTemperatureUnit: (state, action: { payload: TTemperatureUnit }) => {
+    setTemperatureUnit: (state, action: { payload: TCurrentLocationUnitType }) => {
       state.selectedUnit = action.payload;
     },
   },

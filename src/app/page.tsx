@@ -7,7 +7,6 @@ import { useCtxCurrentLocation } from '@/app/context/CtxCurrentLocation';
 import CitySearch from '@/components/CitySearch/CitySearch';
 import { mockDailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
 import { Footer } from '@/components/Footer/Footer';
-import { mockForecastData } from '@/components/Forecast/Forecast.types';
 import Header from '@/components/Header/Header';
 import { ICity } from '@/types/city.types';
 import './styles/page.css';
@@ -48,7 +47,9 @@ export default function HomePage() {
           </section>
 
           <section className="section-even forecast-section">
-            <FiveDayForecast forecast={mockForecastData} />
+            <Suspense fallback={<div className="loading-container">Loading forecast data...</div>}>
+              <FiveDayForecast />
+            </Suspense>
           </section>
 
           <section className="evolution-section">
