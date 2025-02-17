@@ -1,0 +1,43 @@
+.home-container {
+  @apply flex flex-col min-h-screen;
+}
+
+.home-main {
+  @apply flex-1;
+
+  section {
+    @apply w-full pt-16 pb-20 flex justify-center px-8;
+  }
+
+  .section-odd {
+    @apply bg-primarybg;
+  }
+
+  .section-even {
+    @apply bg-secondarybg;
+  }
+}
+
+.home-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.home-description {
+  @apply mb-4;
+}
+
+.home-form {
+  @apply w-full;
+}
+
+.home-label {
+  @apply block mb-2 text-lg font-medium;
+}
+
+.home-input {
+  @apply w-full p-2 border rounded-md;
+}
+
+.home-button {
+  @apply mt-2 p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700;
+}

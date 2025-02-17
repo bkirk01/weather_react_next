@@ -1,0 +1,8 @@
+.custom-tooltip {
+  @apply bg-white bg-opacity-10 backdrop-blur-md text-white text-24 font-bold p-2 rounded-lg shadow-lg;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.custom-tooltip-label {
+  @apply text-orange;
+}

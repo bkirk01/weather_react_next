@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply bg-primarybg text-white;
+}
+
+body {
+  @apply min-h-screen font-sans antialiased;
+}
+
+/* Base styles */
+@layer base {
+  h1 {
+    @apply text-48 font-bold;
+  }
+  h2 {
+    @apply text-36 font-bold;
+  }
+  h3 {
+    @apply text-24 font-bold;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-8 md:py-12;
+  }
+}

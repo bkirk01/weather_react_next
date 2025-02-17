@@ -1,0 +1,39 @@
+.forecast-container {
+  @apply w-full;
+}
+
+.forecast-title {
+  @apply text-orange font-bold text-36 mb-6;
+}
+
+.forecast-cards {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4;
+}
+
+.forecast-card {
+  @apply bg-unit-gradient text-white rounded-xl p-4;
+}
+
+.forecast-card-content {
+  @apply flex flex-col space-y-4;
+}
+
+.forecast-date {
+  @apply text-24 font-bold;
+}
+
+.forecast-temps {
+  @apply flex items-baseline space-x-2;
+}
+
+.forecast-max-temp {
+  @apply text-orange text-48 font-bold;
+}
+
+.forecast-min-temp {
+  @apply text-36 font-bold text-white;
+}
+
+.forecast-description {
+  @apply text-18 font-bold;
+}
