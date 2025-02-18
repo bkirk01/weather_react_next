@@ -16,7 +16,7 @@ export const convertFahrenheitToCelsius = (fahrenheit: number): number => {
   return parseFloat((((fahrenheit - 32) * 5) / 9).toFixed(1));
 };
 
-export const formatTemperature = (
+export const utilsFormatTemperature = (
   temperature: number,
   unit: 'C' | 'F',
   fromUnit: 'C' | 'F' = 'C'
