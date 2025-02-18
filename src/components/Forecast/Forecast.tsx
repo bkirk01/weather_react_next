@@ -45,15 +45,15 @@ const FiveDayForecast: React.FC = () => {
       <h2 className="forecast-title">5 DAYS FORECAST</h2>
       <div className="forecast-cards">
         {forecast.map((day, index) => (
-          <Card key={index} className="forecast-card">
-            <CardContent className="forecast-card-content">
+          <Card key={index} className="forecast-card group">
+            <CardContent className="forecast-card-content transition group-hover:translate group-hover:scale-105 group-hover:duration-[1s]">
               <span className="forecast-date">{utilFormatDate(day.date)}</span>
               <Image
                 src={checkIfDayOrNight(day)}
                 alt={day.description || 'Weather icon'}
                 width={79}
                 height={79}
-                className="forecast-icon"
+                className="forecast-icon transition group-hover:translate-x-5 group-hover:duration-[1s]"
                 priority={index === 0} // Prioritize loading first image
               />
               <div className="forecast-temps">
