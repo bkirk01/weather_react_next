@@ -1,5 +1,11 @@
 export const utilFormatDate = (dateString: string): string => {
   const date = new Date(dateString);
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    return 'Invalid Date';
+  }
+
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   return `${days[date.getDay()]} ${date.getDate()}`;
 };

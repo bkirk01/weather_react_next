@@ -91,7 +91,7 @@ const CitySearch: React.FC<CitySearchProps> = ({ onCitySelect }) => {
         />
 
         {loading && (
-          <div className="search-loading">
+          <div role="status" className="search-loading">
             <div className="search-spinner" />
           </div>
         )}

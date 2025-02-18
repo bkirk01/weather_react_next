@@ -1,3 +1,13 @@
+/**
+ * Temperature Utility Functions
+ *
+ * Provides utility functions for temperature conversions and formatting:
+ * - Celsius to Fahrenheit conversion
+ * - Fahrenheit to Celsius conversion
+ * - Temperature formatting with unit awareness
+ * - Precise decimal handling
+ */
+
 export const convertCelsiusToFahrenheit = (celsius: number): number => {
   return (celsius * 9) / 5 + 32;
 };

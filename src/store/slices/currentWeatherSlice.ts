@@ -1,17 +1,17 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import { LocationWeatherService } from '@/api/weather/location.service';
 import { ICity } from '@/types/city.types';
 import { ILocationWeatherResponse, TCurrentLocationUnitType } from '@/types/weather.types';
 
-interface CurrentWeatherState {
+export interface CurrentWeatherState {
   data: ILocationWeatherResponse | null;
   loading: boolean;
   error: string | null;
   selectedUnit: TCurrentLocationUnitType;
 }
 
-const initialState: CurrentWeatherState = {
+export const initialState: CurrentWeatherState = {
   data: null,
   loading: false,
   error: null,
@@ -48,7 +48,10 @@ const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState,
   reducers: {
-    setSelectedUnit: (state, action) => {
+    setSelectedUnit: (
+      state: CurrentWeatherState,
+      action: PayloadAction<TCurrentLocationUnitType>
+    ) => {
       state.selectedUnit = action.payload;
       if (state.data) {
         state.data.temperature =

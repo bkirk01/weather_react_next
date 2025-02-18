@@ -3,13 +3,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { ForecastService } from '@/api/weather/forecast.service';
 import { IForecastDay } from '@/types/weather.types';
 
-interface ForecastState {
+export interface ForecastState {
   data: IForecastDay[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: ForecastState = {
+export const initialState: ForecastState = {
   data: [],
   loading: false,
   error: null,

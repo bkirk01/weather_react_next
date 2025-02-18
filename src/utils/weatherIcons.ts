@@ -51,5 +51,5 @@ export const getWeatherIcon = (iconNumber: number): IWeatherIcon => {
   if (iconMap[iconNumber]) {
     return { ...iconMap[iconNumber], ...{ src: `${ICON_BASE_URL}/${iconNumber}-s.png` } };
   }
-  return { ...iconMap[defaultIconNo], ...{ src: `${ICON_BASE_URL}/${defaultIconNo}s.png` } };
+  return { ...iconMap[defaultIconNo], ...{ src: `${ICON_BASE_URL}/${defaultIconNo}-s.png` } };
 };
