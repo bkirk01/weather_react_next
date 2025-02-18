@@ -5,6 +5,7 @@ import {
 } from '@/types/accuweather.types';
 import { ICurrentWeather, IForecastDay, IWeatherResponse } from '@/types/weather.types';
 import { IWeatherLocation } from '@/types/weatherAppTypes';
+import { utilIsNightTime } from '@/utils/dateFormatter';
 
 export class WeatherMapper {
   static mapLocation(data: AccuWeatherLocationResponse): IWeatherLocation {
@@ -54,7 +55,7 @@ export class WeatherMapper {
           fahrenheit: (day.Temperature.Maximum.Value * 9) / 5 + 32,
         },
       },
-      description: day.Day.IconPhrase,
+      description: utilIsNightTime() ? day.Night.IconPhrase : day.Day.IconPhrase,
       dayIcon: day.Day.Icon,
       nightIcon: day.Night.Icon,
       precipitation: {
