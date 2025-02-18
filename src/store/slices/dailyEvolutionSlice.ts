@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { HourlyForecastService } from '@/api/weather/hourly.service';
-import { DailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
+import { DailyEvolutionData } from '@/types/components/DailyEvolution.types';
 
 export interface DailyEvolutionState {
   data: DailyEvolutionData[];

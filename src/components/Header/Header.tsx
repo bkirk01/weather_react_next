@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import './Header.css';
+import '@/components/Header/Header.css';
 
 interface HeaderProps {
   title: string;

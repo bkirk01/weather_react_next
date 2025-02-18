@@ -11,7 +11,7 @@ import { IApiRateLimiter } from '@/types/api.types';
  */
 
 export const API_RATE_LIMIT_CONFIG: IApiRateLimiter = {
-  MAX_API_CALLS: 10,
+  MAX_API_CALLS: 50,
   RESET_INTERVAL: 60000, // 1 minute
 };
 

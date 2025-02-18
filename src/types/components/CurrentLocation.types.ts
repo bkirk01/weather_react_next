@@ -1,6 +1,6 @@
-import { ILocationWeatherResponse } from '@/api/weather/types';
-import { ICity } from '@/types/city.types';
+import { ICity } from '@/types/components/CitySearch.types';
 import { TCurrentLocationUnitType } from '@/types/weather.types';
+import { ILocationWeatherResponse } from '@/types/weatherAppTypes';
 
 export interface ICurrentLocationState {
   loading: boolean;

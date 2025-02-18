@@ -36,7 +36,7 @@ axiosInstance.interceptors.request.use(
       throw new Error('Invalid request configuration');
     }
   },
-  error => {
+  () => {
     return Promise.reject(new Error('Failed to prepare the request. Please try again.'));
   }
 );

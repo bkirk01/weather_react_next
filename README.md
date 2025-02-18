@@ -66,6 +66,28 @@ npm run dev
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Storybook
+
+### Overview
+
+Storybook is used for developing and testing UI components in isolation. It provides a development environment for UI components, allowing you to:
+
+- Browse components
+- View different states of each component
+- Test component interactions
+- Develop components in isolation
+- Document component APIs
+
+### Running Storybook
+
+Start the Storybook development server:
+
+```bash
+npm run storybook
+```
+
+This will open Storybook in your browser at [http://localhost:6006](http://localhost:6006).
+
 ## Testing
 
 The project uses Vitest and Testing Library for comprehensive testing coverage.

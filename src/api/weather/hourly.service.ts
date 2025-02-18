@@ -1,6 +1,6 @@
-import { DailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
-
-import axiosInstance from '../axios';
+import axiosInstance from '@/api/axios';
+import { DailyEvolutionData } from '@/types/components/DailyEvolution.types';
+import { IHourlyWeather } from '@/types/weather.types';
 
 export class HourlyForecastService {
   private readonly apiKey: string;
@@ -19,7 +19,7 @@ export class HourlyForecastService {
         throw new Error('No hourly forecast data available');
       }
 
-      return response.data.slice(0, 5).map((hour: any) => ({
+      return response.data.slice(0, 5).map((hour: IHourlyWeather) => ({
         hour: new Date(hour.DateTime).getHours(),
         temperature: hour.Temperature.Value,
       }));
