@@ -14,9 +14,9 @@ A modern, responsive weather application built with Next.js and TypeScript that 
 - City search functionality
   <img src="./readme-sources/weather-app-search.png">
 - 5-day weather forecast
-  <img src="./readme-sources/weather-5-day-forecast.png">
+  <img src="./readme-sources/weather-app-5-day-forecast.png">
 - Daily temperature evolution chart
-  <img src="./readme-sources/weather-daily-evolution.png">
+  <img src="./readme-sources/weather-app-daily-evolution.png">
 - Temperature unit conversion (Celsius/Fahrenheit)
 - Responsive design
 - PWA support
