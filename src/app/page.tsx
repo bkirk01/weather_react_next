@@ -53,11 +53,13 @@ export default function HomePage() {
           </section>
 
           <section className="evolution-section">
-            <DailyEvolution data={mockDailyEvolutionData} />
+            <DailyEvolution />
           </section>
         </div>
       </main>
-      <Footer />
+      <section className="section-even">
+        <Footer />
+      </section>
     </div>
   );
 }
