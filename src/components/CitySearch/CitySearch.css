@@ -32,7 +32,7 @@
 }
 
 .search-loading {
-  @apply absolute right-3 bottom-1.5 transform -translate-y-1/2;
+  @apply absolute right-3 top-1/2 transform -translate-y-1/2;
 }
 
 .search-spinner {
@@ -41,4 +41,8 @@
 
 .search-error {
   @apply mt-2 text-red-500 text-sm;
+}
+
+.input-spinner-container {
+  @apply relative;
 }

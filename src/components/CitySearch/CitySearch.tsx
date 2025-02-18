@@ -85,21 +85,23 @@ const CitySearch: React.FC<CitySearchProps> = ({ showLoading = false, onCitySele
         <label htmlFor="city-search" className="search-label">
           City Name
         </label>
-        <input
-          id="city-search"
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Enter city name"
-          className="search-input"
-          aria-required="true"
-        />
+        <div className="input-spinner-container">
+          <input
+            id="city-search"
+            type="text"
+            value={query}
+            onChange={handleInputChange}
+            placeholder="Enter city name"
+            className="search-input"
+            aria-required="true"
+          />
 
-        {loading && (
-          <div role="status" className="search-loading">
-            <div className="search-spinner" />
-          </div>
-        )}
+          {loading && (
+            <div role="status" className="search-loading">
+              <div className="search-spinner" />
+            </div>
+          )}
+        </div>
 
         {error && <div className="search-error">{error}</div>}
 
