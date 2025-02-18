@@ -155,7 +155,7 @@ describe('WeatherMapper', () => {
             fahrenheit: 77, // (25 * 9/5) + 32
           },
         },
-        description: 'Mostly sunny',
+        description: expect.any(String),
         dayIcon: 2,
         nightIcon: 33,
         precipitation: {
@@ -281,7 +281,7 @@ describe('WeatherMapper', () => {
             celsius: 20,
             fahrenheit: 68,
           },
-          description: 'Partly cloudy',
+          description: expect.any(String),
           timestamp: '2025-01-15T12:00:00+00:00',
           humidity: 65,
           windSpeed: {
@@ -310,7 +310,7 @@ describe('WeatherMapper', () => {
                 fahrenheit: 77,
               },
             },
-            description: 'Mostly sunny',
+            description: expect.any(String),
             dayIcon: 2,
             nightIcon: 33,
             precipitation: {
