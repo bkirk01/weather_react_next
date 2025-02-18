@@ -9,9 +9,8 @@ import { useWeatherService } from '@/hooks/useWeatherService';
 import { setSelectedUnit } from '@/store/slices/currentWeatherSlice';
 import { fetchForecast } from '@/store/slices/forecastSlice';
 import { AppDispatch, RootState } from '@/store/store';
-import { TCurrentLocationUnitType } from '@/types/weather.types';
-
 import { ICurrentLocationProps } from '@/types/components/CurrentLocation.types';
+import { TCurrentLocationUnitType } from '@/types/weather.types';
 
 import '@/components/CurrentLocation/CurrentLocation.css';
 

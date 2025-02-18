@@ -1,6 +1,5 @@
-import { ICity } from '@/types/components/CitySearch.types';
-
 import axiosInstance from '@/api/axios';
+import { ICity } from '@/types/components/CitySearch.types';
 
 export class AccuWeatherService {
   private readonly apiKey: string;

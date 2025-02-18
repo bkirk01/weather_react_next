@@ -65,3 +65,9 @@ export interface IForecastDay {
     type: string;
   };
 }
+export interface IHourlyWeather {
+  DateTime: string;
+  Temperature: {
+    Value: number;
+  };
+}

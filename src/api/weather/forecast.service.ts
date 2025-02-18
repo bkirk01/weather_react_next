@@ -1,8 +1,8 @@
+import axiosInstance from '@/api/axios';
+import { WeatherMapper } from '@/api/mappers/weather.mapper';
 import { IForecastDay } from '@/types/weather.types';
 
-import axiosInstance from '@/api/axios';
 import { AccuWeatherForecastResponse } from '../../types/accuweather.types';
-import { WeatherMapper } from '@/api/mappers/weather.mapper';
 
 export class ForecastService {
   private readonly apiKey: string;

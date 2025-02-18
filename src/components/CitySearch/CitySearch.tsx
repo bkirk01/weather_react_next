@@ -8,7 +8,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { AccuWeatherService } from '@/api/weather/accuweather.service';
 import { useDebounce } from '@/hooks/useDebounce';
 import { ICity } from '@/types/components/CitySearch.types';
-import '@/component/CitySearch/CitySearch.css';
+import '@/components/CitySearch/CitySearch.css';
 
 interface CitySearchProps {
   showLoading?: boolean;
