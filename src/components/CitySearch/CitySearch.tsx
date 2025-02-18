@@ -11,13 +11,14 @@ import { ICity } from '@/types/city.types';
 import './CitySearch.css';
 
 interface CitySearchProps {
+  showLoading?: boolean;
   onCitySelect: (city: ICity) => void;
 }
 
-const CitySearch: React.FC<CitySearchProps> = ({ onCitySelect }) => {
+const CitySearch: React.FC<CitySearchProps> = ({ showLoading = false, onCitySelect }) => {
   const [query, setQuery] = useState('');
   const [cities, setCities] = useState<ICity[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(showLoading);
   const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [shouldSearch, setShouldSearch] = useState(true);

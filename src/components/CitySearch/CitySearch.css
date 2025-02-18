@@ -11,7 +11,8 @@
 }
 
 .search-input {
-  @apply w-full py-2 px-4 rounded-md bg-primarybg border-none text-white focus:outline-none h-[50px];
+  @apply py-2 px-4 rounded-md bg-primarybg border-none text-white focus:outline-none h-[50px];
+  width: -webkit-fill-available;
 }
 
 .search-results {
@@ -31,11 +32,11 @@
 }
 
 .search-loading {
-  @apply absolute right-3 top-1/2 transform -translate-y-1/2;
+  @apply absolute right-3 bottom-1.5 transform -translate-y-1/2;
 }
 
 .search-spinner {
-  @apply animate-spin rounded-full h-5 w-5 border-2 border-orange border-t-transparent;
+  @apply animate-spin rounded-full h-5 w-5 border-solid border-2 border-orange border-t-transparent;
 }
 
 .search-error {
