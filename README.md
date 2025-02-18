@@ -2,11 +2,14 @@
 
 A modern, responsive weather application built with Next.js and TypeScript that provides real-time weather information using the AccuWeather API.
 
+<img src="./readme_sources/weather-app.png">
+
 ## Features
 
 - Real-time weather data
 - Location-based weather
 - City search functionality
+  <img src="./readme_sources/weather-app-search.png">
 - 5-day weather forecast
 - Daily temperature evolution chart
 - Temperature unit conversion (Celsius/Fahrenheit)
