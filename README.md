@@ -148,27 +148,27 @@ Tests are automatically run:
 
 ```
 src/
-├── api/                # API related code
-│   ├── axios.ts        # Axios instance and interceptors
-│   ├── mappers/        # Data mapping utilities
-│   ├── security/       # Rate limiting and security
-│   └── weather/        # Weather service implementations
-├── app/                # Next.js app directory
-│   ├── context/        # React context providers
-│   ├── layout.tsx      # Root layout
-│   ├── page.tsx        # Home page
-│   └── styles/         # Global styles
-├── components/         # React components
-│   ├── CitySearch/     # City search functionality
-│   ├── CurrentLocation/# Current weather display
-│   ├── DailyEvolution/ # Temperature evolution chart
-│   ├── Forecast/       # 5-day forecast
-│   └── ui/             # Reusable UI components
-├── hooks/              # Custom React hooks
-├── store/              # Redux store and slices
-├── types/              # TypeScript type definitions
-├── test/               # Unit testing
-└── utils/              # Utility functions
+├── api/                    # API related code
+│   ├── axios.ts            # Axios instance and interceptors
+│   ├── mappers/            # Data mapping utilities
+│   ├── security/           # Rate limiting and security
+│   └── weather/            # Weather service implementations
+├── app/                    # Next.js app directory
+│   ├── context/            # React context providers
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx            # Home page
+│   └── styles/             # Global styles
+├── components/             # React components
+│   ├── CitySearch/         # City search functionality
+│   ├── CurrentLocation/    # Current weather display
+│   ├── DailyEvolution/     # Temperature evolution chart
+│   ├── Forecast/           # 5-day forecast
+│   └── ui/                 # Reusable UI components
+├── hooks/                  # Custom React hooks
+├── store/                  # Redux store and slices
+├── types/                  # TypeScript type definitions
+├── test/                   # Unit testing
+└── utils/                  # Utility functions
 ```
 
 ## Features in Detail
