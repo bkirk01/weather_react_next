@@ -11,7 +11,7 @@
 }
 
 .forecast-card {
-  @apply flex w-full max-w-[250px] min-w-[172px] sm:w-[172px] px-2 py-9 bg-unit-gradient text-white rounded-xl shadow-lg;
+  @apply flex w-full max-w-[250px] min-w-[172px]  bg-unit-gradient sm:w-[172px] px-2 py-9 text-white rounded-xl shadow-lg;
 }
 
 .forecast-card-content {
@@ -23,7 +23,7 @@
 }
 
 .forecast-icon {
-  @apply my-2 pt-12;
+  @apply my-2 pt-12 transition;
 }
 
 .forecast-temps {
