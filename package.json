@@ -14,7 +14,9 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run",
-    "test:staged": "vitest related --run"
+    "test:staged": "vitest related --run",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
@@ -24,11 +26,20 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.10.3",
+    "storybook": "^8.5.6",
     "workbox-window": "^7.0.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
     "@reduxjs/toolkit": "^2.5.1",
     "@rollup/plugin-terser": "^0.4.4",
+    "@storybook/addon-essentials": "^8.5.6",
+    "@storybook/addon-interactions": "^8.5.6",
+    "@storybook/addon-onboarding": "^8.5.6",
+    "@storybook/blocks": "^8.5.6",
+    "@storybook/nextjs": "^8.5.6",
+    "@storybook/react": "^8.5.6",
+    "@storybook/test": "^8.5.6",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
@@ -49,6 +60,7 @@
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.11.3",
     "husky": "^8.0.3",
     "jsdom": "^23.0.1",
     "lint-staged": "^15.2.0",
