@@ -1,12 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-interface DailyEvolution {
-  hour: number;
-  temperature: number;
-}
+import { HourlyForecastService } from '@/api/weather/hourly.service';
+import { DailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
 
 interface DailyEvolutionState {
-  data: DailyEvolution[];
+  data: DailyEvolutionData[];
   loading: boolean;
   error: string | null;
 }
@@ -17,23 +15,41 @@ const initialState: DailyEvolutionState = {
   error: null,
 };
 
-export const dailyEvolutionSlice = createSlice({
+export const fetchDailyEvolution = createAsyncThunk(
+  'dailyEvolution/fetch',
+  async (locationKey: string, { rejectWithValue }) => {
+    try {
+      const hourlyService = new HourlyForecastService();
+      return await hourlyService.get24HourForecast(locationKey);
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Failed to fetch hourly forecast data');
+    }
+  }
+);
+
+const dailyEvolutionSlice = createSlice({
   name: 'dailyEvolution',
   initialState,
-  reducers: {
-    setDailyEvolution: (state, action: PayloadAction<DailyEvolution[]>) => {
-      state.data = action.payload;
-      state.error = null;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
-      state.loading = false;
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchDailyEvolution.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchDailyEvolution.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchDailyEvolution.rejected, (state, action) => {
+        state.loading = false;
+        state.error = (action.payload as string) || 'Failed to fetch hourly forecast data';
+      });
   },
 });
 
-export const { setDailyEvolution, setLoading, setError } = dailyEvolutionSlice.actions;
 export default dailyEvolutionSlice.reducer;

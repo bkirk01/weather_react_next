@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { Card, CardContent } from '@/components/ui';
 import { RootState } from '@/store/store';
 import './Forecast.css';
-import { formatDate } from '@/utils/dateFormatter';
+import { IForecastDay } from '@/types/weather.types';
+import { utilFormatDate, utilIsNightTime } from '@/utils/dateFormatter';
 import { getWeatherIcon } from '@/utils/weatherIcons';
 
 const FiveDayForecast: React.FC = () => {
@@ -34,6 +35,11 @@ const FiveDayForecast: React.FC = () => {
     return null;
   }
 
+  const checkIfDayOrNight = (day: IForecastDay) => {
+    const isNight = utilIsNightTime();
+    return getWeatherIcon(isNight ? day.nightIcon : day.dayIcon).src;
+  };
+
   return (
     <div className="forecast-container">
       <h2 className="forecast-title">5 DAYS FORECAST</h2>
@@ -41,9 +47,9 @@ const FiveDayForecast: React.FC = () => {
         {forecast.map((day, index) => (
           <Card key={index} className="forecast-card">
             <CardContent className="forecast-card-content">
-              <span className="forecast-date">{formatDate(day.date)}</span>
+              <span className="forecast-date">{utilFormatDate(day.date)}</span>
               <Image
-                src={getWeatherIcon(day.dayIcon).src}
+                src={checkIfDayOrNight(day)}
                 alt={day.description || 'Weather icon'}
                 width={79}
                 height={79}

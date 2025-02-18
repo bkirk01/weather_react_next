@@ -4,12 +4,16 @@ export interface DailyEvolutionData {
 }
 
 export const mockDailyEvolutionData: DailyEvolutionData[] = [
-  { hour: 0, temperature: 18 },
-  { hour: 3, temperature: 16 },
-  { hour: 6, temperature: 15 },
-  { hour: 9, temperature: 20 },
-  { hour: 12, temperature: 25 },
-  { hour: 15, temperature: 27 },
-  { hour: 18, temperature: 23 },
-  { hour: 21, temperature: 20 },
+  { hour: 8, temperature: 3 },
+  { hour: 9, temperature: -2 },
+  { hour: 10, temperature: 4 },
+  { hour: 11, temperature: 11 },
+  { hour: 12, temperature: 6 },
+  { hour: 13, temperature: 2 },
+  { hour: 14, temperature: 8 },
+  { hour: 15, temperature: 24 },
+  { hour: 16, temperature: 6 },
+  { hour: 17, temperature: 2 },
+  { hour: 18, temperature: 8 },
+  { hour: 19, temperature: 24 },
 ];
