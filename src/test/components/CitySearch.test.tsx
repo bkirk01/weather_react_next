@@ -1,4 +1,4 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
@@ -48,9 +48,8 @@ describe('CitySearch', () => {
     renderWithProviders(<CitySearch onCitySelect={mockOnCitySelect} />);
 
     // Type in the search input
-    await act(async () => {
-      await user.type(screen.getByRole('textbox'), 'lon');
-    });
+
+    await user.type(screen.getByRole('textbox'), 'lon');
 
     // Wait for results to appear
     await waitFor(() => {
