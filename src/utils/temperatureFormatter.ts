@@ -9,11 +9,11 @@
  */
 
 export const convertCelsiusToFahrenheit = (celsius: number): number => {
-  return (celsius * 9) / 5 + 32;
+  return parseFloat(((celsius * 9) / 5 + 32).toFixed(1));
 };
 
 export const convertFahrenheitToCelsius = (fahrenheit: number): number => {
-  return ((fahrenheit - 32) * 5) / 9;
+  return parseFloat((((fahrenheit - 32) * 5) / 9).toFixed(1));
 };
 
 export const formatTemperature = (
