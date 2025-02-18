@@ -8,11 +8,11 @@ A modern, responsive weather application built with Next.js and TypeScript that 
 
 - App Header
   <img src="./readme-sources/weather-app-header.png">
-- Real-time weather data
-- Location-based weather
-  <img src="./readme-sources/weather-app-current-location.png">
+- Real-time weather by Accuweather api
 - City search functionality
   <img src="./readme-sources/weather-app-search.png">
+- Location-based weather
+  <img src="./readme-sources/weather-app-current-location.png">
 - 5-day weather forecast
   <img src="./readme-sources/weather-app-5-day-forecast.png">
 - Daily temperature evolution chart
