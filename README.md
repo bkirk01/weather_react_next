@@ -6,12 +6,17 @@ A modern, responsive weather application built with Next.js and TypeScript that 
 
 ## Features
 
+- App Header
+  <img src="./readme-sources/weather-app-header.png">
 - Real-time weather data
 - Location-based weather
+  <img src="./readme-sources/weather-app-current-location.png">
 - City search functionality
   <img src="./readme-sources/weather-app-search.png">
 - 5-day weather forecast
+  <img src="./readme-sources/weather-5-day-forecast.png">
 - Daily temperature evolution chart
+  <img src="./readme-sources/weather-daily-evolution.png">
 - Temperature unit conversion (Celsius/Fahrenheit)
 - Responsive design
 - PWA support
