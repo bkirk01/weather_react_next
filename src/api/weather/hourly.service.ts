@@ -1,6 +1,6 @@
-import { DailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
+import { DailyEvolutionData } from '@/types/components/DailyEvolution.types';
 
-import axiosInstance from '../axios';
+import axiosInstance from '@/api/axios';
 
 export class HourlyForecastService {
   private readonly apiKey: string;

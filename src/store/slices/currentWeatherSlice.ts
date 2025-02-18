@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import { LocationWeatherService } from '@/api/weather/location.service';
-import { ICity } from '@/types/city.types';
+import { ICity } from '@/types/components/CitySearch.types';
 import { ILocationWeatherResponse, TCurrentLocationUnitType } from '@/types/weather.types';
 
 export interface CurrentWeatherState {

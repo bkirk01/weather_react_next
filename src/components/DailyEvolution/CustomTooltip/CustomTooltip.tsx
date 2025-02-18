@@ -1,7 +1,7 @@
 import { TooltipProps } from 'recharts';
 
 import { useCtxCurrentLocation } from '@/context/CtxCurrentLocation';
-import './CustomTooltip.css';
+import '@/components/DailyEvolution/CustomTooltip/CustomTooltip.css';
 
 const CustomTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload }) => {
   const { unit } = useCtxCurrentLocation();

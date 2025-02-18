@@ -11,9 +11,9 @@ import { fetchForecast } from '@/store/slices/forecastSlice';
 import { AppDispatch, RootState } from '@/store/store';
 import { TCurrentLocationUnitType } from '@/types/weather.types';
 
-import { ICurrentLocationProps } from './CurrentLocation.types';
+import { ICurrentLocationProps } from '@/types/components/CurrentLocation.types';
 
-import './CurrentLocation.css';
+import '@/components/CurrentLocation/CurrentLocation.css';
 
 const LOCATION_OPTIONS = {
   enableHighAccuracy: true,

@@ -4,7 +4,7 @@ import type {
   AccuWeatherLocationResponse,
   AccuWeatherCurrentResponse,
   AccuWeatherForecastResponse,
-} from '@/api/mappers/types/accuweather.types';
+} from '@/types/accuweather.types';
 import { WeatherMapper } from '@/api/mappers/weather.mapper';
 
 describe('WeatherMapper', () => {

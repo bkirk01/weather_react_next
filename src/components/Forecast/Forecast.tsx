@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { Card, CardContent } from '@/components/ui';
 import { RootState } from '@/store/store';
-import './Forecast.css';
+import '@/components/Footer/Forecast.css';
 import { IForecastDay } from '@/types/weather.types';
 import { utilFormatDate, utilIsNightTime } from '@/utils/dateFormatter';
 import { getWeatherIcon } from '@/utils/weatherIcons';

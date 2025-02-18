@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import CitySearch from '@/components/CitySearch';
 import { AccuWeatherService } from '@/api/weather/accuweather.service';
-import { ICity } from '@/types/city.types';
+import { ICity } from '@/types/components/CitySearch.types';
 import { userEvent, within } from '@storybook/testing-library';
 
 // Mock cities data

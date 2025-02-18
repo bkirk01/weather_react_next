@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import AppProvider from './context/AppProvider';
-import './styles/globals.css';
+import AppProvider from '@/app/context/AppProvider';
+import '@/app/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Next.js PWA App',

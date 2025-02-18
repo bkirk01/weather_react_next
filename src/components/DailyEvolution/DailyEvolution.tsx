@@ -7,9 +7,9 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { fetchDailyEvolution } from '@/store/slices/dailyEvolutionSlice';
 import { RootState, AppDispatch } from '@/store/store';
 
-import CustomDot from './CustomDots/CustomDots';
-import CustomTooltip from './CustomTooltip/CustomTooltip';
-import './DailyEvolution.css';
+import CustomDot from '@/components/DailyEvolution/CustomDots/CustomDots';
+import CustomTooltip from '@/components/DailyEvolution/CustomTooltip/CustomTooltip';
+import '@/components/DailyEvolution/DailyEvolution.css';
 
 const DailyEvolution: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

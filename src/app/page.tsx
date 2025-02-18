@@ -5,11 +5,10 @@ import React, { Suspense, useState } from 'react';
 
 import { useCtxCurrentLocation } from '@/app/context/CtxCurrentLocation';
 import CitySearch from '@/components/CitySearch/CitySearch';
-import { mockDailyEvolutionData } from '@/components/DailyEvolution/DailyEvolution.types';
 import { Footer } from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
-import { ICity } from '@/types/city.types';
-import './styles/page.css';
+import { ICity } from '@/types/components/CitySearch.types';
+import '@/app/styles/page.css';
 
 const DailyEvolution = dynamic(() => import('@/components/DailyEvolution/DailyEvolution'), {
   ssr: false,

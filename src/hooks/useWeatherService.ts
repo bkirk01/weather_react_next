@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { fetchLocationWeather, fetchCityWeather } from '@/store/slices/currentWeatherSlice';
 import { AppDispatch } from '@/store/store';
-import { ICity } from '@/types/city.types';
+import { ICity } from '@/types/components/CitySearch.types';
 import { TCurrentLocationUnitType } from '@/types/weather.types';
 
 export const useWeatherService = () => {

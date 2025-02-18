@@ -1,11 +1,11 @@
 import {
   AccuWeatherLocationResponse,
   AccuWeatherCurrentResponse,
-} from '@/api/mappers/types/accuweather.types';
-import { ICity } from '@/types/city.types';
+} from '@/types/accuweather.types';
+import { ICity } from '@/types/components/CitySearch.types';
 import { ILocationWeatherResponse, TCurrentLocationUnitType } from '@/types/weather.types';
 
-import axiosInstance from '../axios';
+import axiosInstance from '@/api/axios';
 
 /**
  * Location Weather Service

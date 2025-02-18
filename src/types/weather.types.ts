@@ -1,4 +1,4 @@
-import { IWeatherLocation } from '@/api/weather/types';
+import { IWeatherLocation } from '@/types/weatherAppTypes';
 
 // Common weather-related types and interfaces
 export type TCurrentLocationUnitType = 'C' | 'F';

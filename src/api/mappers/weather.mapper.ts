@@ -1,12 +1,12 @@
 import { ICurrentWeather, IForecastDay, IWeatherResponse } from '@/types/weather.types';
 
-import { IWeatherLocation } from '../weather/types';
+import { IWeatherLocation } from '@/types/weatherAppTypes';
 
 import {
   AccuWeatherLocationResponse,
   AccuWeatherCurrentResponse,
   AccuWeatherForecastResponse,
-} from './types/accuweather.types';
+} from '@/types/accuweather.types';
 
 export class WeatherMapper {
   static mapLocation(data: AccuWeatherLocationResponse): IWeatherLocation {

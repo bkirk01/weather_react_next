@@ -37,7 +37,7 @@ axiosInstance.interceptors.request.use(
     }
   },
   error => {
-    return Promise.reject(new Error('Failed to prepare the request. Please try again.'));
+    return Promise.reject(new Error('Failed to prepare the request. Please try again.', error.message));
   }
 );
 
