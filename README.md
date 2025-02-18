@@ -24,6 +24,7 @@ A modern, responsive weather application built with Next.js and TypeScript that 
 - **API**: AccuWeather
 - **HTTP Client**: Axios
 - **PWA**: next-pwa
+- **Testing**: Vitest, Testing Library
 
 ## Getting Started
 
@@ -57,11 +58,97 @@ npm run dev
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Testing
+
+The project uses Vitest and Testing Library for comprehensive testing coverage.
+
+### Running Tests
+
+- Run all tests:
+
+  ```bash
+  npm run test
+  ```
+
+- Run tests with UI:
+
+  ```bash
+  npm run test:ui
+  ```
+
+- Generate coverage report:
+
+  ```bash
+  npm run test:coverage
+  ```
+
+- Run tests in CI environment:
+  ```bash
+  npm run test:ci
+  ```
+
+### Test Structure
+
+- \'src/test/\': Main test directory
+  - \'setup.ts\': Test environment configuration
+  - \'utils.tsx\': Test utilities and custom renders
+  - \'components/\': Component tests
+  - \'utils/\': Utility function tests
+  - \'mappers/\': Data mapper tests
+
+### Testing Patterns
+
+1. **Component Tests**
+
+   - Render testing
+   - User interaction
+   - State management
+   - Async operations
+   - Error handling
+   - Accessibility
+
+2. **Utility Tests**
+
+   - Input validation
+   - Data transformation
+   - Error cases
+   - Edge cases
+
+3. **Mapper Tests**
+   - Data transformation
+   - API response handling
+   - Type validation
+
+### Test Coverage
+
+The project maintains high test coverage across:
+
+- Components
+- Utility functions
+- Data mappers
+- Redux slices
+- Custom hooks
+
+Coverage reports include:
+
+- Statements
+- Branches
+- Functions
+- Lines
+
+### Continuous Integration
+
+Tests are automatically run:
+
+- On every pull request
+- Before each commit (via husky)
+- In CI/CD pipeline
+
 ## Project Structure
 
 ```
 src/
-├── api/                 # API related code
+├── api/                # API related code
 │   ├── axios.ts        # Axios instance and interceptors
 │   ├── mappers/        # Data mapping utilities
 │   ├── security/       # Rate limiting and security
@@ -78,9 +165,10 @@ src/
 │   ├── Forecast/       # 5-day forecast
 │   └── ui/             # Reusable UI components
 ├── hooks/              # Custom React hooks
-├── store/             # Redux store and slices
-├── types/             # TypeScript type definitions
-└── utils/             # Utility functions
+├── store/              # Redux store and slices
+├── types/              # TypeScript type definitions
+├── test/               # Unit testing
+└── utils/              # Utility functions
 ```
 
 ## Features in Detail
