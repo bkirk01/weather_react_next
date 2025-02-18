@@ -4,18 +4,18 @@
 
 .home-main {
   @apply flex-1;
+}
 
-  section {
-    @apply w-full pt-16 pb-20 flex justify-center px-8;
-  }
+section {
+  @apply w-full pt-16 pb-16 flex justify-center px-8;
+}
 
-  .section-odd {
-    @apply bg-primarybg;
-  }
+.section-odd {
+  @apply bg-primarybg;
+}
 
-  .section-even {
-    @apply bg-secondarybg;
-  }
+.section-even {
+  @apply bg-secondarybg;
 }
 
 .home-title {

@@ -1,19 +1,21 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import { LocationWeatherService } from '@/api/weather/location.service';
 import { ICity } from '@/types/city.types';
 import { ILocationWeatherResponse, TCurrentLocationUnitType } from '@/types/weather.types';
 
-interface CurrentWeatherState {
+export interface CurrentWeatherState {
   data: ILocationWeatherResponse | null;
   loading: boolean;
   error: string | null;
+  selectedUnit: TCurrentLocationUnitType;
 }
 
-const initialState: CurrentWeatherState = {
+export const initialState: CurrentWeatherState = {
   data: null,
   loading: false,
   error: null,
+  selectedUnit: 'C',
 };
 
 export const fetchLocationWeather = createAsyncThunk(
@@ -45,7 +47,18 @@ export const fetchCityWeather = createAsyncThunk(
 const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedUnit: (
+      state: CurrentWeatherState,
+      action: PayloadAction<TCurrentLocationUnitType>
+    ) => {
+      state.selectedUnit = action.payload;
+      if (state.data) {
+        state.data.temperature =
+          state.selectedUnit === 'C' ? state.data.temperatureC : state.data.temperatureF;
+      }
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchLocationWeather.pending, state => {
@@ -77,4 +90,5 @@ const currentWeatherSlice = createSlice({
   },
 });
 
+export const { setSelectedUnit } = currentWeatherSlice.actions;
 export default currentWeatherSlice.reducer;

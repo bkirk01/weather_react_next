@@ -1,63 +1,63 @@
 .current-location {
   @apply flex flex-col items-center w-full max-w-[644px];
+}
 
-  h2 {
-    @apply font-black mb-[26px] text-36 text-white;
-  }
+h2 {
+  @apply font-black mb-[26px] text-36 text-white;
+}
 
-  .temperature-container {
-    @apply flex items-center justify-between w-full px-4 mb-[26px] max-w-[223px];
-  }
+.temperature-container {
+  @apply flex items-center justify-between w-full px-4 mb-[26px] max-w-[223px];
+}
 
-  .temperature {
-    @apply text-orange mr-4 text-96 font-normal;
-  }
+.temperature {
+  @apply text-orange mr-4 text-96 font-normal;
+}
 
-  .units {
-    @apply flex flex-col;
-  }
+.units {
+  @apply flex flex-col;
+}
 
-  .units button {
-    @apply bg-unit-gradient text-inactiveText text-36 font-black rounded-lg px-2 py-1 m-1 flex flex-col w-[50px] h-[50px] items-center justify-center transition-colors duration-200;
-  }
+.units button {
+  @apply bg-unit-gradient text-inactiveText text-36 font-black rounded-lg px-2 py-1 m-1 flex flex-col w-[50px] h-[50px] items-center justify-center transition-colors duration-200;
+}
 
-  .units .active {
-    @apply text-orange;
-  }
+.units .active {
+  @apply text-orange;
+}
 
-  .description {
-    @apply text-24 font-black text-white;
-  }
+.description {
+  @apply text-24 font-black text-white;
+}
 
-  .error-container {
-    @apply text-center p-6;
-  }
+.error-container {
+  @apply text-center p-6;
+}
 
-  .error-message {
-    @apply text-red-500 text-18 mb-4 text-center;
-  }
+.error-message {
+  @apply text-red-500 text-18 mb-4 text-center;
+}
 
-  .loading-spinner {
-    @apply animate-spin rounded-full h-12 w-12 border-4 border-orange border-t-transparent;
-  }
+.loading-spinner {
+  @apply animate-spin rounded-full h-12 w-12 border-4 border-orange border-t-transparent;
+}
 
-  .permission-prompt {
-    @apply bg-secondarybg p-6 rounded-xl shadow-lg max-w-md mx-auto text-center;
-  }
+.permission-prompt {
+  @apply bg-secondarybg p-6 rounded-xl shadow-lg max-w-md mx-auto text-center;
+}
 
-  .permission-title {
-    @apply text-24 font-bold text-white mb-4;
-  }
+.permission-title {
+  @apply text-24 font-bold text-white mb-4;
+}
 
-  .permission-description {
-    @apply text-18 text-gray-300 mb-6;
-  }
+.permission-description {
+  @apply text-18 text-gray-300 mb-6;
+}
 
-  .permission-button {
-    @apply bg-orange text-white px-6 py-3 rounded-lg font-bold hover:bg-orange/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-secondarybg;
-  }
+.permission-button {
+  @apply bg-orange text-white px-6 py-3 rounded-lg font-bold hover:bg-orange/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-secondarybg;
+}
 
-  .sr-only {
-    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
-  }
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
 }

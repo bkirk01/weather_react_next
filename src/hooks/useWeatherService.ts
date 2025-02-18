@@ -14,10 +14,13 @@ export const useWeatherService = () => {
   const getLocationWeather = useCallback(
     async (latitude: number, longitude: number, unit: TCurrentLocationUnitType) => {
       try {
-        await dispatch(fetchLocationWeather({ latitude, longitude, unit })).unwrap();
+        const result = await dispatch(fetchLocationWeather({ latitude, longitude, unit })).unwrap();
+        return result;
       } catch (error) {
-        console.error('Error fetching location weather:', error);
-        throw new Error('Failed to fetch weather data');
+        const errorMessage =
+          error instanceof Error ? error.message : 'Failed to fetch weather data';
+        console.error('Error fetching location weather:', errorMessage);
+        throw new Error(errorMessage);
       }
     },
     [dispatch]
@@ -26,10 +29,13 @@ export const useWeatherService = () => {
   const getWeatherByCity = useCallback(
     async (city: ICity, unit: TCurrentLocationUnitType) => {
       try {
-        await dispatch(fetchCityWeather({ city, unit })).unwrap();
+        const result = await dispatch(fetchCityWeather({ city, unit })).unwrap();
+        return result;
       } catch (error) {
-        console.error('Error fetching city weather:', error);
-        throw new Error('Failed to fetch weather data');
+        const errorMessage =
+          error instanceof Error ? error.message : 'Failed to fetch weather data';
+        console.error('Error fetching city weather:', errorMessage);
+        throw new Error(errorMessage);
       }
     },
     [dispatch]

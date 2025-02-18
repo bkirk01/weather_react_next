@@ -1,21 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Card } from '@/components/ui';
 import { useWeatherService } from '@/hooks/useWeatherService';
-import { RootState } from '@/store/store';
+import { setSelectedUnit } from '@/store/slices/currentWeatherSlice';
+import { fetchForecast } from '@/store/slices/forecastSlice';
+import { AppDispatch, RootState } from '@/store/store';
+import { TCurrentLocationUnitType } from '@/types/weather.types';
 
 import { ICurrentLocationProps } from './CurrentLocation.types';
+
 import './CurrentLocation.css';
+
+const LOCATION_OPTIONS = {
+  enableHighAccuracy: true,
+  timeout: 15000, // 15 seconds timeout
+  maximumAge: 300000, // Cache location for 5 minutes
+};
 
 const CurrentLocation: React.FC<ICurrentLocationProps> = ({
   unit,
   selectedTmpUnit,
   selectedCity,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { getLocationWeather, getWeatherByCity } = useWeatherService();
   const {
     data: weatherData,
@@ -25,26 +36,36 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
   const [locationError, setLocationError] = useState<string | null>(null);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
 
-  const handleLocationError = (error: GeolocationPositionError) => {
-    switch (error.code) {
-      case GeolocationPositionError.PERMISSION_DENIED:
-        setPermissionDenied(true);
-        setLocationError(
-          'Location access was denied. Please enable location services to get weather information for your area.'
-        );
-        break;
-      case GeolocationPositionError.POSITION_UNAVAILABLE:
-        setLocationError('Location information is currently unavailable. Please try again later.');
-        break;
-      case GeolocationPositionError.TIMEOUT:
-        setLocationError('Location request timed out. Please check your connection and try again.');
-        break;
-      default:
-        setLocationError('An unexpected error occurred while getting your location.');
-    }
-    setIsInitialLoad(false);
-  };
+  const handleLocationError = useCallback(
+    (error: GeolocationPositionError) => {
+      switch (error.code) {
+        case GeolocationPositionError.PERMISSION_DENIED:
+          setPermissionDenied(true);
+          setLocationError(
+            'Location access was denied. Please enable location services to get weather information for your area.'
+          );
+          break;
+        case GeolocationPositionError.POSITION_UNAVAILABLE:
+          setLocationError('Unable to detect your location. Please try the city search above.');
+          break;
+        case GeolocationPositionError.TIMEOUT:
+          if (retryCount < MAX_RETRIES) {
+            setRetryCount(prev => prev + 1);
+            requestLocationPermission();
+          } else {
+            setLocationError('Location request timed out. Please try the city search above.');
+          }
+          break;
+        default:
+          setLocationError('An unexpected error occurred. Please try the city search above.');
+      }
+      setIsInitialLoad(false);
+    },
+    [retryCount]
+  );
 
   const requestLocationPermission = async () => {
     setLocationError(null);
@@ -61,15 +82,25 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
     try {
       const position = await new Promise<GeolocationPosition>((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0,
+          ...LOCATION_OPTIONS,
+          enableHighAccuracy: retryCount === 0,
+          timeout: LOCATION_OPTIONS.timeout * (retryCount + 1),
         });
       });
 
-      await getLocationWeather(position.coords.latitude, position.coords.longitude, unit);
+      const weatherResult = await getLocationWeather(
+        position.coords.latitude,
+        position.coords.longitude,
+        unit
+      );
+
+      if (weatherResult.locationKey) {
+        dispatch(fetchForecast(weatherResult.locationKey));
+      }
+
       setPermissionDenied(false);
       setLocationError(null);
+      setRetryCount(0); // Reset retry count on success
     } catch (error) {
       if (error instanceof GeolocationPositionError) {
         handleLocationError(error);
@@ -85,11 +116,26 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
   useEffect(() => {
     if (selectedCity) {
       setIsInitialLoad(true);
-      getWeatherByCity(selectedCity, unit).finally(() => setIsInitialLoad(false));
+      getWeatherByCity(selectedCity, unit)
+        .then(result => {
+          // Fetch forecast after getting weather data for selected city
+          if (result.locationKey) {
+            dispatch(fetchForecast(result.locationKey));
+          }
+        })
+        .catch(error => {
+          setLocationError(error.message || 'Failed to fetch weather data for selected city.');
+        })
+        .finally(() => setIsInitialLoad(false));
     } else {
       requestLocationPermission();
     }
   }, [selectedCity, unit, getWeatherByCity]);
+
+  const handleUnitChange = (newUnit: TCurrentLocationUnitType) => {
+    selectedTmpUnit(newUnit);
+    dispatch(setSelectedUnit(newUnit));
+  };
 
   if (loading || isInitialLoad) {
     return (
@@ -156,14 +202,14 @@ const CurrentLocation: React.FC<ICurrentLocationProps> = ({
         <div className="units" role="group" aria-label="Temperature unit selection">
           <button
             className={`unit ${unit === 'C' ? 'active' : ''}`}
-            onClick={() => selectedTmpUnit('C')}
+            onClick={() => handleUnitChange('C')}
             aria-pressed={unit === 'C'}
           >
             C
           </button>
           <button
             className={`unit ${unit === 'F' ? 'active' : ''}`}
-            onClick={() => selectedTmpUnit('F')}
+            onClick={() => handleUnitChange('F')}
             aria-pressed={unit === 'F'}
           >
             F

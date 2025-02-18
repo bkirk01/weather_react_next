@@ -7,6 +7,19 @@ import { ILocationWeatherResponse, TCurrentLocationUnitType } from '@/types/weat
 
 import axiosInstance from '../axios';
 
+/**
+ * Location Weather Service
+ *
+ * Handles all location-based weather operations including:
+ * - Fetching weather data by coordinates
+ * - Retrieving current conditions
+ * - Getting weather by location key
+ * - Formatting weather responses
+ *
+ * This service acts as the main interface between the application and the AccuWeather API
+ * for location-specific weather data.
+ */
+
 export class LocationWeatherService {
   private readonly apiKey: string;
 
@@ -38,6 +51,32 @@ export class LocationWeatherService {
     } catch (error) {
       console.error('Error fetching current conditions:', error);
       throw new Error('Failed to fetch weather data');
+    }
+  }
+
+  async getWeatherByLocationKey(locationKey: string): Promise<ILocationWeatherResponse> {
+    try {
+      const response = await axiosInstance.get(`/locations/v1/${locationKey}`);
+
+      if (!response.data) {
+        throw new Error('Location not found');
+      }
+
+      const conditions = await this.getCurrentConditions(locationKey);
+
+      return this.formatWeatherResponse(
+        conditions,
+        {
+          Key: locationKey,
+          LocalizedName: response.data.LocalizedName,
+          Country: response.data.Country,
+          GeoPosition: response.data.GeoPosition,
+        },
+        'C' // Default to Celsius
+      );
+    } catch (error) {
+      console.error('Error fetching weather by location key:', error);
+      throw error;
     }
   }
 

@@ -1,7 +1,7 @@
 .header {
   @apply bg-primarybg px-10 py-6 flex justify-between h-[95px] items-center;
+}
 
-  .header-title {
-    @apply text-white font-black text-4xl leading-[42px] tracking-normal;
-  }
+.header-title {
+  @apply text-white font-black text-4xl leading-[42px] tracking-normal;
 }
