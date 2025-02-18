@@ -4,7 +4,7 @@ import { cleanup } from '@testing-library/react';
 import { expect, afterEach, vi } from 'vitest';
 
 // Extend Vitest's expect method with methods from react-testing-library
-expect.extend(matchers as any);
+expect.extend(matchers as typeof matchers);
 
 // Mock ResizeObserver
 global.ResizeObserver = vi.fn().mockImplementation(() => ({

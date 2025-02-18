@@ -7,17 +7,18 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { AccuWeatherService } from '@/api/weather/accuweather.service';
 import { useDebounce } from '@/hooks/useDebounce';
-import { ICity } from '@/types/city.types';
-import './CitySearch.css';
+import { ICity } from '@/types/components/CitySearch.types';
+import '@/components/CitySearch/CitySearch.css';
 
 interface CitySearchProps {
+  showLoading?: boolean;
   onCitySelect: (city: ICity) => void;
 }
 
-const CitySearch: React.FC<CitySearchProps> = ({ onCitySelect }) => {
+const CitySearch: React.FC<CitySearchProps> = ({ showLoading = false, onCitySelect }) => {
   const [query, setQuery] = useState('');
   const [cities, setCities] = useState<ICity[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(showLoading);
   const [error, setError] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [shouldSearch, setShouldSearch] = useState(true);
@@ -25,6 +26,10 @@ const CitySearch: React.FC<CitySearchProps> = ({ onCitySelect }) => {
   const weatherService = new AccuWeatherService();
 
   const debouncedQuery = useDebounce(query, 300);
+
+  useEffect(() => {
+    setLoading(showLoading);
+  }, [showLoading]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,21 +85,23 @@ const CitySearch: React.FC<CitySearchProps> = ({ onCitySelect }) => {
         <label htmlFor="city-search" className="search-label">
           City Name
         </label>
-        <input
-          id="city-search"
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Enter city name"
-          className="search-input"
-          aria-required="true"
-        />
+        <div className="input-spinner-container">
+          <input
+            id="city-search"
+            type="text"
+            value={query}
+            onChange={handleInputChange}
+            placeholder="Enter city name"
+            className="search-input"
+            aria-required="true"
+          />
 
-        {loading && (
-          <div role="status" className="search-loading">
-            <div className="search-spinner" />
-          </div>
-        )}
+          {loading && (
+            <div role="status" className="search-loading">
+              <div className="search-spinner" />
+            </div>
+          )}
+        </div>
 
         {error && <div className="search-error">{error}</div>}
 

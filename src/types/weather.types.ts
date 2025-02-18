@@ -1,4 +1,4 @@
-import { IWeatherLocation } from '@/api/weather/types';
+import { IWeatherLocation } from '@/types/weatherAppTypes';
 
 // Common weather-related types and interfaces
 export type TCurrentLocationUnitType = 'C' | 'F';
@@ -63,5 +63,11 @@ export interface IForecastDay {
   precipitation: {
     probability: number;
     type: string;
+  };
+}
+export interface IHourlyWeather {
+  DateTime: string;
+  Temperature: {
+    Value: number;
   };
 }

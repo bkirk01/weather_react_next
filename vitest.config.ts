@@ -13,8 +13,9 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       exclude: [
-        'node_modules/',
         'src',
+        'node_modules/',
+        'stories/',
         'src/test/',
         '**/*.d.ts',
         '**/*.config.{js,ts}',

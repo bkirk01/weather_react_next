@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
 
+import { WeatherMapper } from '@/api/mappers/weather.mapper';
 import type {
   AccuWeatherLocationResponse,
   AccuWeatherCurrentResponse,
   AccuWeatherForecastResponse,
-} from '@/api/mappers/types/accuweather.types';
-import { WeatherMapper } from '@/api/mappers/weather.mapper';
+} from '@/types/accuweather.types';
 
 describe('WeatherMapper', () => {
   describe('mapLocation', () => {

@@ -32,6 +32,6 @@
     }
   },
   "include": ["next-env.d.ts", "src", "src/test", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "stories"],
   "types": ["vitest/globals"]
 }

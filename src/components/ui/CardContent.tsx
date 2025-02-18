@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import './styles/CardContent.css';
+import '@/components/ui/styles/CardContent.css';
 
 interface CardContentProps {
   children: React.ReactNode;

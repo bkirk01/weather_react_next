@@ -1,4 +1,3 @@
-// City-related types and interfaces
 export interface ICity {
   Key: string;
   LocalizedName: string;
@@ -16,6 +15,6 @@ export interface ICitySearchState {
   shouldSearch: boolean;
 }
 
-export type TCitySearchRefs = {
+export interface ICitySearchRefs {
   dropdownRef: React.RefObject<HTMLDivElement>;
-};
+}
