@@ -50,7 +50,12 @@ const meta = {
     onCitySelect: { action: 'citySelected' },
     showLoading: {
       control: 'boolean',
-      description: 'Force the loading state to be shown',
+      description: 'Controls the loading state of the component',
+      defaultValue: false,
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
   },
 } satisfies Meta<typeof CitySearch>;
@@ -87,7 +92,6 @@ export const LoadingWithProp: Story = {
 
 export const Loading: Story = {
   args: {
-    showLoading: true,
     onCitySelect: (city: ICity) => console.log('City selected:', city),
   },
   parameters: {

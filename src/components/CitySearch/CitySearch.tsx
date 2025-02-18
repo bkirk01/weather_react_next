@@ -28,6 +28,10 @@ const CitySearch: React.FC<CitySearchProps> = ({ showLoading = false, onCitySele
   const debouncedQuery = useDebounce(query, 300);
 
   useEffect(() => {
+    setLoading(showLoading);
+  }, [showLoading]);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
