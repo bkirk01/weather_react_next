@@ -13,7 +13,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "test:ci": "vitest run"
+    "test:ci": "vitest run",
+    "test:staged": "vitest related --run"
   },
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
