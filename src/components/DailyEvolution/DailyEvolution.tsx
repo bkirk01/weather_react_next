@@ -8,8 +8,8 @@ import CustomDot from '@/components/DailyEvolution/CustomDots/CustomDots';
 import CustomTooltip from '@/components/DailyEvolution/CustomTooltip/CustomTooltip';
 import { fetchDailyEvolution } from '@/store/slices/dailyEvolutionSlice';
 import { RootState, AppDispatch } from '@/store/store';
-
 import '@/components/DailyEvolution/DailyEvolution.css';
+import { utilsFormatTemperature } from '@/utils/temperatureFormatter';
 
 const DailyEvolution: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -56,7 +56,7 @@ const DailyEvolution: React.FC = () => {
 
   const chartData = evolutionData.map(item => ({
     time: `${item.hour}:00`,
-    value: selectedUnit === 'C' ? item.temperature : (item.temperature * 9) / 5 + 32, // Convert to Fahrenheit if needed
+    value: utilsFormatTemperature(item.temperature, selectedUnit), // Convert to Fahrenheit if needed
   }));
 
   return (
